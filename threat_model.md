@@ -1,36 +1,36 @@
-# LLM Risk Sandbox
+# Threat Model: LLM Risk Sandbox
 
-This is a small simulation of what can go wrong when a large language model is given access to internal business documents without proper constraints. It’s not a real LLM—it mimics the flow of data and response behavior to demonstrate how leakage happens and how to block it.
+This sandbox simulates what can go wrong when a large language model is given access to internal business documents without guardrails. It's not a real LLM, but it mimics behavior well enough to explore what breaks when access is poorly scoped.
 
-## Why This Exists
+## Modeled Risks
 
-LLMs are increasingly being embedded into internal tools, sometimes with direct access to sensitive company data. That’s a problem.
+- Cross-role prompt leakage
+- Overexposed internal documents
+- Lack of prompt-response logging
+- Absence of role-based filtering
 
-This app shows what happens when:
-- The LLM has access to docs across departments (engineering, HR, finance)
-- A user tries to ask questions outside their role
-- No logging or filtering is in place
+## Security Assumptions
 
-The goal isn’t to stop people from using LLMs—it’s to show how to wrap them in guardrails before letting them touch real data.
+- Each user is assigned a role (engineering, HR, finance)
+- Prompts may refer to departments outside that role
+- There’s no natural language understanding—just simple string matching
+- All documents live in one shared location (mocked JSON)
 
-## How It Works
+## Containment Measures
 
-- Each user is hardcoded to a department (`alice`, `bob`, `charles`)
-- Prompts are checked for role violations
-- Only department-specific documents are available
-- All interactions are logged
-- Documents are stored in a local JSON file to simulate cloud storage
+- Role-based access to documents
+- Prompt filtering blocks cross-department references
+- Logging of prompt and response pairs to a file
+- Cloud storage is simulated but structurally accurate (single-source, untagged data)
 
-## What It’s Simulating
+## Limitations
 
-- LLMs hooked up to internal cloud buckets (e.g., S3, GCS)
-- Prompt leakage and role overreach
-- Logging and traceability requirements
-- What a minimal containment layer might look like
+- No authentication or identity validation
+- No detection of indirect leakage (rephrased or obfuscated queries)
+- No real LLM behavior—responses are fixed
+- No encryption or document classification
 
-## Running the App
+## Purpose
 
-Run from the project root:
+The goal isn’t to simulate a working product, but to show how things fail by default—and what even minimal containment looks like. It’s a testbed for discussing security boundaries before plugging anything into an actual LLM.
 
-```bash
-python app.py
