@@ -1,0 +1,19 @@
+# Byte-compiled / cache files
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Log files
+logs/*.log
+
+# PyCharm project files
+.idea/
+
+# macOS / OS cruft
+.DS_Store
+
+# Vim/Swap/Temp files
+*.swp
+*.swo

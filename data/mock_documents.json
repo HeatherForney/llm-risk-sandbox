@@ -1,0 +1,17 @@
+{
+  "engineering": [
+    "System design doc: confidential infra details.",
+    "API schema: endpoints for internal services.",
+    "Incident postmortem: outage caused by auth race condition."
+  ],
+  "hr": [
+    "Employee grievance report: private.",
+    "Salary bands and performance review criteria.",
+    "Exit interview transcript: sensitive content."
+  ],
+  "finance": [
+    "Budget spreadsheet: Q3 revenue forecasts.",
+    "Accounts payable summary: internal-only vendors.",
+    "Expense policy: draft under legal review."
+  ]
+}
